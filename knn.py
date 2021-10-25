@@ -39,11 +39,11 @@ def predict(x_split, y_split):
 	total_err /= vecinos
 	print(f"Error total: {total_err}")
 
-	plt.plot(epchs, err_train, color="red", label="Training data error")
-	plt.plot(epchs, err_test, color="green", label="Testing data error")
+	plt.plot(epchs, err_train, color="red", label="Training data accuraccy")
+	plt.plot(epchs, err_test, color="green", label="Testing data accuraccy")
 
 	plt.legend()
-	plt.xlabel("Experiment #")
+	plt.xlabel("Accuraccy #")
 	plt.ylabel("Error")
 	plt.show()
 
@@ -84,3 +84,4 @@ def main():
 
 
 main()
+
