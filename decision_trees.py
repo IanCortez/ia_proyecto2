@@ -10,13 +10,15 @@ from sklearn.tree import DecisionTreeClassifier
 def train(y, x,y_test,x_test):
     clf = DecisionTreeClassifier()
     clf.fit(x,y)
-    corrector(y,clf.predict(x))
-    corrector(y_test,clf.predict(x_test))
+    #corrector(y,clf.predict(x))
+    total=corrector(y_test,clf.predict(x_test))
+    return total
 
 def corrector(y,y_pred):
     ans=confusion_matrix(y,y_pred) 
     print(ans)
     print("Porcentaje",(ans[0][0]+ans[1][1])/len(y))
+    return (ans[0][0]+ans[1][1])/len(y)
 
 def get_data():
     tipo = {"Female":-1,"Male":1}
@@ -46,7 +48,7 @@ def get_data():
 
     x=shuffle_vec_x
     y=shuffle_vec_y
-
+    total=0
     block=500
     start=0
     for i in range(10):
@@ -60,7 +62,7 @@ def get_data():
             y_test.append(y[start])
 
         if(block==5000): block=5001
-
+        
         for j in range(block):
             x_train.append(x[start])
             y_train.append(y[start])
@@ -70,7 +72,10 @@ def get_data():
             x_test.append(x[j])
             y_test.append(y[j])
 
-        train(y_train,x_train,y_test,x_test)
+        total=total+train(y_test,x_test,y_train,x_train)
+        print(total)
         #print(len(x_test),len(x_train))
+    total=total/10
+    print("Promedio del accuracy",total)
 np.random.seed(0)
 get_data()
