@@ -1,1 +1,6 @@
-# ia_proyecto2
+# Proyecto 2 IA
+
+## Integrantes
+
+* Ian Cortez
+* Matías Avendaño
